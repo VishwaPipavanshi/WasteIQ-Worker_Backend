@@ -5,8 +5,8 @@ from email.mime.multipart import MIMEMultipart
 
 # [CONFGURATION REQUIRED]
 # Replace these with your actual Gmail account and App Password
-SMTP_SERVER = os.getenv("SMTP_SERVER")
-SMTP_PORT = int(os.getenv("SMTP_PORT",587))
+SMTP_SERVER = "smtp.gmail.com"
+SMTP_PORT = 587
 EMAIL_USER = os.getenv("EMAIL_USER")  # The sender email
 EMAIL_PASS = os.getenv("EMAIL_PASS")    # Your Google App Password (not regular password)
 
@@ -36,8 +36,7 @@ def send_reset_otp_email(recipient_email: str, otp: str):
 
     try:
         # Create SMTP session
-        # server = smtplib.SMTP(SMTP_SERVER, SMTP_PORT)
-        server = smtplib.SMTP("smtp.gmail.com", 587)
+        server = smtplib.SMTP(SMTP_SERVER, SMTP_PORT, timeout=10)
         server.starttls() # Secure the connection
         
         # Login
