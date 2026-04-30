@@ -10,7 +10,7 @@ SMTP_PORT = int(os.getenv("SMTP_PORT",587))
 EMAIL_USER = os.getenv("EMAIL_USER")  # The sender email
 EMAIL_PASS = os.getenv("EMAIL_PASS")    # Your Google App Password (not regular password)
 
-async def send_reset_otp_email(recipient_email: str, otp: str):
+def send_reset_otp_email(recipient_email: str, otp: str):
     """
     Sends a 6-digit OTP to the recipient's email using SMTP.
     """
@@ -36,7 +36,8 @@ async def send_reset_otp_email(recipient_email: str, otp: str):
 
     try:
         # Create SMTP session
-        server = smtplib.SMTP(SMTP_SERVER, SMTP_PORT)
+        # server = smtplib.SMTP(SMTP_SERVER, SMTP_PORT)
+        server = smtplib.SMTP("smtp.gmail.com", 587)
         server.starttls() # Secure the connection
         
         # Login

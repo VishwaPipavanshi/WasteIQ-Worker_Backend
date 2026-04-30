@@ -151,7 +151,7 @@ async def forgot_password(data: dict):
     print(f"---------------------------\n")
 
     # Send actual email via SMTP
-    email_success = await send_reset_otp_email(email, otp)
+    email_success = send_reset_otp_email(email, otp)
     # print("OTP:", otp)
     if not email_success:
         print(f"!!! Warning: Could not send actual email to {email}")
