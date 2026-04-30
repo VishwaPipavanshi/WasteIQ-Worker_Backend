@@ -352,10 +352,10 @@ async def upload_profile_image(worker_id: str, file: UploadFile = File(...)):
         worker = await worker_collection.find_one({"_id": ObjectId(worker_id)})
         if not worker:
             raise HTTPException(status_code=404, detail="Worker not found")
-
+        contents = await file.read()
         # Upload to cloudinary
         upload_result = cloudinary.uploader.upload(
-            file.file,
+            contents,
             folder="worker_profiles"
         )
 
