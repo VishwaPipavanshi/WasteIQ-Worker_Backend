@@ -151,7 +151,8 @@ async def forgot_password(data: dict):
     print(f"---------------------------\n")
 
     # Send actual email via SMTP
-    email_success = await send_reset_otp_email(email, otp)
+    # email_success = await send_reset_otp_email(email, otp)
+    print("OTP:", otp)
     if not email_success:
         print(f"!!! Warning: Could not send actual email to {email}")
 
@@ -161,7 +162,11 @@ async def forgot_password(data: dict):
     )
     
     # In a real app, send OTP to email. Here we just return it for testing.
-    return {"message": "6-digit code sent to your email", "otp": otp}
+    # return {"message": "6-digit code sent to your email", "otp": otp}
+    return {
+    "message": "OTP generated",
+    "otp": otp
+}
 
 @router.post("/verify-otp")
 async def verify_otp(data: dict):
