@@ -1,7 +1,8 @@
+import os
 import cloudinary
 
 cloudinary.config(
-    cloud_name="dkduqpkvi",
-    api_key="755846897137732",
-    api_secret="7SYIqnMu93xxALMAwBvYn0wFPzs"
+    cloud_name=os.getenv("CLOUDINARY_CLOUD_NAME"),
+    api_key=os.getenv("CLOUDINARY_API_KEY"),
+    api_secret=os.getenv("CLOUDINARY_API_SECRET")
 )
